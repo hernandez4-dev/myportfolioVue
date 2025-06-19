@@ -2,7 +2,7 @@
   <section class="contact">
     <div class="contact-container">
       <h2>Contactame</h2>
-      <form @submit.prevent="handleSubmit" name="contact" method="POST" data-netlify="true">
+      <form @submit.prevent="handleSubmit" name="contact" method="POST" data-netlify="true" netlify>
         <div class="form-group">
           <label for="name">Nombre</label>
           <input type="text" id="name" name="name" v-model="formData.name" required>
