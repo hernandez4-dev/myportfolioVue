@@ -41,9 +41,23 @@ export default {
     }
   },
   methods: {
-    
-  }
+    handleSubmit() {
+
+      // Aquí puedes agregar la lógica para enviar el formulario
+
+      console.log('Formulario enviado:', this.formData)
+
+      alert('Gracias por tu mensaje. Te responderé pronto.')
+
+      this.formData = { name: '', email: '', message: '' }
+
+    }
+
+  }
+
 }
+    
+  
 </script>
 
 <style scoped>
