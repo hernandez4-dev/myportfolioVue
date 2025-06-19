@@ -5,21 +5,23 @@
       <form name="contact" method="POST" data-netlify="true">
         <div class="form-group">
           <label for="name">Nombre</label>
-          <input type="text" id="name" v-model="formData.name" required>
+          <input type="text" id="name" name="name" v-model="formData.name" required>
         </div>
-        
+
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="formData.email" required>
+          <input type="email" id="email" name="email" v-model="formData.email" required>
         </div>
-        
+
         <div class="form-group">
           <label for="message">Mensaje</label>
-          <textarea id="message" v-model="formData.message" required></textarea>
+          <textarea id="message" name="message" v-model="formData.message" required></textarea>
         </div>
-        
+
         <button type="submit" class="submit-btn">Enviar Mensaje</button>
       </form>
+      <div v-if="successMessage" class="message success">{{ successMessage }}</div>
+      <div v-if="errorMessage" class="message error">{{ errorMessage }}</div>
     </div>
   </section>
 </template>
@@ -33,16 +35,13 @@ export default {
         name: '',
         email: '',
         message: ''
-      }
+      },
+      successMessage: '',
+      errorMessage: ''
     }
   },
   methods: {
-    handleSubmit() {
-      // Aquí puedes agregar la lógica para enviar el formulario
-      console.log('Formulario enviado:', this.formData)
-      alert('Gracias por tu mensaje. Te responderé pronto.')
-      this.formData = { name: '', email: '', message: '' }
-    }
+    
   }
 }
 </script>
