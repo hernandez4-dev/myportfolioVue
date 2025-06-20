@@ -7,7 +7,7 @@
       <div class="hero-buttons">
         <!-- <router-link to="/about-me" class="btn primary">Sobre mí</router-link> -->
         <router-link to="/proyectos" class="btn primary">Ver Proyectos</router-link>
-        <router-link to="/contacto" class="btn secondary">Contactame</router-link>
+        <router-link to="/about-me" class="btn secondary">Sobre mi</router-link>
       </div>
     </div>
   </section>

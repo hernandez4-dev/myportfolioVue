@@ -6,8 +6,10 @@
       
         <div class="about-me-content">  
           <img src="/img/aboutme.jpg" alt="About Me" class="rounded-full mx-auto h-40 w-40">
-            <h2>Sobre mí</h2>
-            <p>Soy un diseñador gráfico con una pasión por la creatividad y el diseño. Me gusta crear diseños que sean únicos y que transmitan una idea o mensaje.</p>
+            <h2>Web Developer Jr</h2>
+            <p>Aprendiendo cada dia, diferentes tecnologias para crear soluciones a problemas reales.</p>
+            <h2>Ilustrador Gráfico</h2>
+            <p>Ilustrador por pasión y diversión, me gusta crear diseños que sean únicos y que transmitan una idea o mensaje.</p>
         </div>
     </section>
 </template>

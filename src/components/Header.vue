@@ -1,12 +1,27 @@
 <template>
   <header class="header">
-    <nav class="nav">
-      <router-link to="/" class="logo">Mi Portafolio</router-link>
-      <div class="nav-links">
-        <router-link to="/" class="nav-link">Inicio</router-link>
-        <router-link to="/about-me" class="nav-link">Sobre mí</router-link>
-        <router-link to="/proyectos" class="nav-link">Proyectos</router-link>
-        <router-link to="/contacto" class="nav-link">Contacto</router-link>
+    <nav class="nav w-full max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <router-link to="/" class="logo text-2xl font-bold text-gray-800">Mi Portafolio</router-link>
+      <button
+        class="hamburger flex flex-col justify-center w-8 h-8 bg-transparent border-none cursor-pointer z-50 md:hidden"
+        @click="toggleMenu"
+        aria-label="Abrir menú"
+      >
+        <span :class="['block h-1 w-8 bg-gray-800 rounded transition-all duration-300', menuOpen ? 'transform translate-y-2 rotate-45' : '']"></span>
+        <span :class="['block h-1 w-8 bg-gray-800 rounded transition-all duration-300 my-1', menuOpen ? 'opacity-0' : '']"></span>
+        <span :class="['block h-1 w-8 bg-gray-800 rounded transition-all duration-300', menuOpen ? 'transform -translate-y-2 -rotate-45' : '']"></span>
+      </button>
+      <div
+        :class="[
+          'nav-links md:flex gap-8 md:static absolute top-16 left-0 w-full bg-white flex-col md:flex-row items-center transition-all duration-300',
+          menuOpen ? 'flex' : 'hidden',
+          'md:bg-transparent md:w-auto md:top-auto md:left-auto md:gap-8'
+        ]"
+      >
+        <router-link to="/" class="nav-link py-4 md:py-0 text-lg text-gray-800 hover:text-blue-500 w-full text-center md:w-auto" @click="closeMenu">Inicio</router-link>
+        <router-link to="/about-me" class="nav-link py-4 md:py-0 text-lg text-gray-800 hover:text-blue-500 w-full text-center md:w-auto" @click="closeMenu">Sobre mí</router-link>
+        <router-link to="/proyectos" class="nav-link py-4 md:py-0 text-lg text-gray-800 hover:text-blue-500 w-full text-center md:w-auto" @click="closeMenu">Proyectos</router-link>
+        <router-link to="/contacto" class="nav-link py-4 md:py-0 text-lg text-gray-800 hover:text-blue-500 w-full text-center md:w-auto" @click="closeMenu">Contacto</router-link>
       </div>
     </nav>
   </header>
@@ -14,7 +29,20 @@
 
 <script>
 export default {
-  name: 'HeaderComponent'
+  name: 'HeaderComponent',
+  data() {
+    return {
+      menuOpen: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
+    closeMenu() {
+      this.menuOpen = false;
+    }
+  }
 }
 </script>
 
@@ -27,42 +55,7 @@ export default {
   top: 0;
   z-index: 1000;
 }
-
-.nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2c3e50;
   text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-link {
-  color: #2c3e50;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #3498db;
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
 }
 </style>
