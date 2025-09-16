@@ -2,7 +2,7 @@
   <section class="contact">
     <div class="contact-container">
       <h2>Contactame</h2>
-      <form name="contact" method="POST" data-netlify="true">
+      <form name="contact" method="POST" data-netlify="true" @submit.prevent="handleSubmit">
         <input type="hidden" name="form-name" value="contact" />
         <div class="form-group">
           <label for="name">Nombre</label>
@@ -19,7 +19,9 @@
           <textarea id="message" name="message" v-model="formData.message" required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        <button type="submit" class="submit-btn" :disabled="isSubmitting">
+          {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+        </button>
       </form>
       <div v-if="successMessage" class="message success">{{ successMessage }}</div>
       <div v-if="errorMessage" class="message error">{{ errorMessage }}</div>
@@ -28,6 +30,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ContactForm',
   data() {
@@ -38,15 +42,34 @@ export default {
         message: ''
       },
       successMessage: '',
-      errorMessage: ''
+      errorMessage: '',
+      isSubmitting: false
     }
   },
   methods: {
-    handleSubmit() {
-      // Aquí puedes agregar la lógica para enviar el formulario
-      console.log('Formulario enviado:', this.formData)
-      alert('Gracias por tu mensaje. Te responderé pronto.')
-      this.formData = { name: '', email: '', message: '' }
+    async handleSubmit() {
+      this.successMessage = ''
+      this.errorMessage = ''
+      
+      this.isSubmitting = true
+      
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/contact', {
+          name: this.formData.name,
+          email: this.formData.email,
+          message: this.formData.message
+        })
+        
+        if (response.status === 200 || response.status === 201) {
+          this.successMessage = '¡Gracias por tu mensaje! Te responderé pronto.'
+          this.formData = { name: '', email: '', message: '' }
+        }
+      } catch (error) {
+        console.error('Error al enviar el formulario:', error)
+        this.errorMessage = 'Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo.'
+      } finally {
+        this.isSubmitting = false
+      }
     }
   }
 }
@@ -115,5 +138,37 @@ textarea {
 
 .submit-btn:hover {
   background: #34a07c;
+}
+
+/* CAMBIO 10: Estilos para el botón deshabilitado */
+.submit-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-btn:disabled:hover {
+  background: #6c757d;
+}
+
+/* CAMBIO 11: Estilos para los mensajes de éxito y error */
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 </style>

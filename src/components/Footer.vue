@@ -9,8 +9,7 @@
         <h3>Redes Sociales</h3>
         <div class="social-links">
           <a href="https://www.instagram.com/rapsodaz_oficial/" class="social-link" target="_blank">Instagram</a>
-          <a href="#" class="social-link">Behance</a>
-          <a href="#" class="social-link">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/mario-hernandez-23b062123" class="social-link" target="_blank">LinkedIn</a>
         </div>
       </div>
       <div class="footer-section">
